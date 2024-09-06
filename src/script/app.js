@@ -9,7 +9,7 @@ const addTaskBtn = document.querySelector(".add-task-btn");
 const tasks = document.querySelector("#tasks");
 const taskMenu = document.querySelector(".task-menu");
 const threeDotMenu = document.querySelectorAll(".three-dot-menu");
-
+const cancelTaskBtn = document.querySelector(".cancel-task-btn");
 // Get tasks from localStorage or set to empty array
 let taskData = JSON.parse(localStorage.getItem("tasks")) || [];
 //Store current edit field id
@@ -45,7 +45,7 @@ tasks.addEventListener("click", (event) => {
       array.forEach((element) => {
         console.log(element.id === taskItem.id);
         if (element.id === taskItem.id) {
-          const {id,  name, priority, endDate, status } = element;
+          const { id, name, priority, endDate, status } = element;
           editId = id;
           taskName.value = name;
           taskPriority.value = priority;
@@ -74,6 +74,12 @@ tasks.addEventListener("click", (event) => {
 
     // Also remove the task from localStorage
     taskData = taskData.filter((task) => task.id !== taskItem.id);
+    //reasign all field's id
+    let newId = 1;
+    taskData.forEach((element) => {
+      element.id = newId;
+      newId++;
+    });
     localStorage.setItem("tasks", JSON.stringify(taskData));
   }
 });
@@ -85,7 +91,9 @@ const addToHTML = () => {
 
     const { id, name, priority, endDate, status } = task;
     const date = new Date(endDate);
-    const dateFormatted = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+    const dateFormatted = `${date.getDate()}-${
+      date.getMonth() + 1
+    }-${date.getFullYear()}`;
 
     console.log(id);
 
@@ -119,7 +127,9 @@ const addChildToHTML = () => {
 
   const { id, name, priority, endDate, status } = task;
   const date = new Date(endDate);
-  const dateFormatted = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+  const dateFormatted = `${date.getDate()}-${
+    date.getMonth() + 1
+  }-${date.getFullYear()}`;
 
   console.log(id);
 
@@ -176,34 +186,39 @@ const taskAdder = (event) => {
 
 // Add event listener to "Add Task" button
 addTaskBtn.addEventListener("click", (event) => {
-  console.log('task added is clicked')
+  console.log("task added is clicked");
   if (event.target.innerText === "Add task") {
     taskAdder();
   } else if (event.target.innerText === "Save Changes") {
-    console.log('save changes button is clicked');
+    console.log("save changes button is clicked");
     for (let index = 0; index < taskData.length; index++) {
-      if(taskData[index].id === editId){
-        console.log('edited field is found value store process is going');
+      if (taskData[index].id === editId) {
+        console.log("edited field is found value store process is going");
         console.log(taskData[index]);
         const tmpObj = taskData[index];
-        
-        tmpObj.id =editId;
+
+        tmpObj.id = editId;
         tmpObj.name = taskName.value;
         tmpObj.priority = taskPriority.value;
         tmpObj.endDate = taskEndDate.value;
         tmpObj.status = taskStatus.value;
         console.log(tmpObj);
       }
-      
     }
     console.log(taskData);
     localStorage.setItem("tasks", JSON.stringify(taskData));
-    tasks.innerHTML = '';
+    tasks.innerHTML = "";
     addToHTML();
     clearForm();
-    event.target.innerText = 'Add task';
-    taskAddContainer.classList.toggle('hide');
+    event.target.innerText = "Add task";
+    taskAddContainer.classList.toggle("hide");
   }
+});
+
+// Add event listener to "Cancel" button
+cancelTaskBtn.addEventListener("click", () => {
+  clearForm();
+  taskAddContainer.classList.add("hide");
 });
 
 // Clear input fields after adding task

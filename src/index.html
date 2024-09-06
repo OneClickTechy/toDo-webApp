@@ -4,12 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="description" content="todo list" />
-    <link
-      rel="shortcut icon"
-      href="../assets/logo_icon.png"
-      type="image/x-icon"
-    />
+    <meta name="description" content="To-do list app" />
+    <link rel="shortcut icon" href="../assets/logo_icon.png" type="image/x-icon" />
     <link rel="stylesheet" href="./style/style.css" />
     <script type="module" src="./script/app.js"></script>
     <title>To-Do App</title>
@@ -17,10 +13,10 @@
   <body>
     <header class="header-container">
       <figure>
-        <img src="../assets/logo_woBg.png" alt="todo app logo" />
+        <img src="../assets/logo_woBg.png" alt="To-do app logo" />
       </figure>
       <section>
-        <h1 class="nerko-one-regular text-xl">To-do app</h1>
+        <h1 class="nerko-one-regular text-xl">To-do App</h1>
         <small>by <span class="nerko-one-regular">Oneclicktechy</span></small>
       </section>
     </header>
@@ -31,24 +27,22 @@
         <div>
           <h3 class="task-heading">New Task</h3>
 
-          <label class="no-wrap" for="task-name"
-            >Task name
+          <label class="no-wrap" for="task-name">
+            Task name
             <input
               class="transparent"
               type="text"
-              placeholder="Ex.Project demo"
+              placeholder="Ex. Project demo"
               name="task-name"
               id="task-name"
               required
             />
           </label>
 
-          <label class="no-wrap" for="priority"
-            >Priority
+          <label class="no-wrap" for="priority">
+            Priority
             <select name="priority" class="transparent" id="priority" required>
-              <option value="" selected disabled hidden>
-                --select priority--
-              </option>
+              <option value="" selected disabled hidden>--select priority--</option>
               <option value="🔴">🔴 High</option>
               <option value="🟠">🟠 Medium</option>
               <option value="🟢">🟢 Low</option>
@@ -57,21 +51,20 @@
             </select>
           </label>
 
-          <label class="no-wrap" for="task-end-date"
-            >End date
+          <label class="no-wrap" for="task-end-date">
+            End date
             <input
               type="date"
               class="transparent"
               name="task-end-date"
               id="task-end-date"
-          /></label>
+            />
+          </label>
 
-          <label class="no-wrap" for="task-status"
-            >Task status
+          <label class="no-wrap" for="task-status">
+            Task status
             <select name="task-status" class="transparent" id="task-status">
-              <option value="" selected disabled hidden>
-                --select status--
-              </option>
+              <option value="" selected disabled hidden>--select status--</option>
               <option value="✔️">✔️ Completed</option>
               <option value="🔄">🔄 In Progress</option>
               <option value="⏳">⏳ Not Started</option>
@@ -83,19 +76,19 @@
             </select>
           </label>
 
-          <button type="button" class="add-task-btn btn-reset">Add task</button>
+          <div class="task-buttons">
+            <button type="button" class="add-task-btn btn-reset">Add Task</button>
+            <button type="button" class="cancel-task-btn btn-reset">Cancel</button>
+          </div>
         </div>
       </div>
 
       <div class="tasks-container">
-        <ul id="tasks"></ul>
+        <ul id="tasks" class="tasks"></ul>
       </div>
       <button class="btn-reset add-btn" id="click-to-view-task">+</button>
     </main>
     <footer></footer>
-    <script
-      src="https://kit.fontawesome.com/64224c8a23.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/64224c8a23.js" crossorigin="anonymous"></script>
   </body>
 </html>
