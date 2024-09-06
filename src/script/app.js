@@ -12,7 +12,8 @@ const threeDotMenu = document.querySelectorAll(".three-dot-menu");
 
 // Get tasks from localStorage or set to empty array
 let taskData = JSON.parse(localStorage.getItem("tasks")) || [];
-
+//Store current edit field id
+let editId = undefined;
 console.log(window);
 
 // Add event listener to the parent container 'tasks' using event delegation
@@ -38,12 +39,14 @@ tasks.addEventListener("click", (event) => {
     const taskItem = editButton.closest("li"); // Get the task item (li element) that contains the button
     console.log("Editing task:", taskItem.id);
     search(taskData, taskItem);
-    //Add an exit data in input field
+
+    // Add an exit data in input field
     function search(array, taskItem) {
       array.forEach((element) => {
         console.log(element.id === taskItem.id);
         if (element.id === taskItem.id) {
-          const { name, priority, endDate, status } = element;
+          const {id,  name, priority, endDate, status } = element;
+          editId = id;
           taskName.value = name;
           taskPriority.value = priority;
           taskEndDate.value = endDate;
@@ -75,7 +78,6 @@ tasks.addEventListener("click", (event) => {
   }
 });
 
-
 // Function to display all tasks on load
 const addToHTML = () => {
   taskData.forEach((task) => {
@@ -83,9 +85,7 @@ const addToHTML = () => {
 
     const { id, name, priority, endDate, status } = task;
     const date = new Date(endDate);
-    const dateFormatted = `${date.getDate()}-${
-      date.getMonth() + 1
-    }-${date.getFullYear()}`;
+    const dateFormatted = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
 
     console.log(id);
 
@@ -119,9 +119,7 @@ const addChildToHTML = () => {
 
   const { id, name, priority, endDate, status } = task;
   const date = new Date(endDate);
-  const dateFormatted = `${date.getDate()}-${
-    date.getMonth() + 1
-  }-${date.getFullYear()}`;
+  const dateFormatted = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
 
   console.log(id);
 
@@ -178,11 +176,33 @@ const taskAdder = (event) => {
 
 // Add event listener to "Add Task" button
 addTaskBtn.addEventListener("click", (event) => {
-  if ((event.target.innerText === "Add task")) {
+  console.log('task added is clicked')
+  if (event.target.innerText === "Add task") {
     taskAdder();
-  }
-  else if ((event.target.innerText === "Save changes")) {
-    taskModifier
+  } else if (event.target.innerText === "Save Changes") {
+    console.log('save changes button is clicked');
+    for (let index = 0; index < taskData.length; index++) {
+      if(taskData[index].id === editId){
+        console.log('edited field is found value store process is going');
+        console.log(taskData[index]);
+        const tmpObj = taskData[index];
+        
+        tmpObj.id =editId;
+        tmpObj.name = taskName.value;
+        tmpObj.priority = taskPriority.value;
+        tmpObj.endDate = taskEndDate.value;
+        tmpObj.status = taskStatus.value;
+        console.log(tmpObj);
+      }
+      
+    }
+    console.log(taskData);
+    localStorage.setItem("tasks", JSON.stringify(taskData));
+    tasks.innerHTML = '';
+    addToHTML();
+    clearForm();
+    event.target.innerText = 'Add task';
+    taskAddContainer.classList.toggle('hide');
   }
 });
 
@@ -193,3 +213,5 @@ const clearForm = () => {
   taskEndDate.value = "";
   taskStatus.value = "";
 };
+
+console.log(taskData);
