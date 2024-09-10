@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="./output.css" />
   </head>
   <body>
-    <main class="min-h-screen w-full flex flex-col justify-center align-center">
+    <main class="min-h-screen w-full flex flex-col justify-center align-center gap-4">
       <header>
         <h1 class="text-center text-3xl">ToDo List Maker</h1>
       </header>
-      <section class="grow">
-        <form class="flex flex-col justify-center items-start max-w-[768px]">
+      <section class="grow flex flex-col justify-start items-center">
+        <form class="flex flex-col justify-center items-start bg-green-100 border-[1px] border-black p-4 relative gap-2">
+            <button class="absolute top-0 right-0 p-4" type="button">X</button>
           <label for="input-name">Task Name</label>
           <input
             class="border-b-green-600 border-2"
@@ -62,6 +63,10 @@
             <option value="canceled">❌ Canceled</option>
             <option value="deferred">⏳ Deferred</option>
           </select>
+          <div class="flex justify-between items-center w-full">
+          <button type="submit" class="bg-green-600 text-white p-2">Add</button>
+          <button type="reset" class="bg-green-600 text-white p-2">Reset</button>
+        </div>
         </form>
       </section>
       <footer>
