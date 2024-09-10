@@ -7,13 +7,17 @@
     <link rel="stylesheet" href="./output.css" />
   </head>
   <body>
-    <main class="min-h-screen w-full flex flex-col justify-center align-center gap-4">
+    <main
+      class="min-h-screen w-full flex flex-col justify-center align-center gap-4"
+    >
       <header>
         <h1 class="text-center text-3xl">ToDo List Maker</h1>
       </header>
       <section class="grow flex flex-col justify-start items-center">
-        <form class="flex flex-col justify-center items-start bg-green-100 border-[1px] border-black p-4 relative gap-2">
-            <button class="absolute top-0 right-0 p-4" type="button">X</button>
+        <form
+          class="flex flex-col justify-center items-start bg-green-100 border-[1px] border-black p-4 relative gap-2"
+        >
+          <button class="absolute top-0 right-0 p-4" type="button">X</button>
           <label for="input-name">Task Name</label>
           <input
             class="border-b-green-600 border-2"
@@ -44,8 +48,6 @@
             <option value="high">🚨 High Priority</option>
             <option value="medium">🔶 Medium Priority</option>
             <option value="low">🟢 Low Priority</option>
-            <option value="deferred">⏳ Deferred</option>
-            <option value="on-hold">🛑 On Hold</option>
           </select>
 
           <label for="input-status">Status</label>
@@ -64,15 +66,37 @@
             <option value="deferred">⏳ Deferred</option>
           </select>
           <div class="flex justify-between items-center w-full">
-          <button type="submit" class="bg-green-600 text-white p-2">Add</button>
-          <button type="reset" class="bg-green-600 text-white p-2">Reset</button>
-        </div>
+            <button type="submit" class="bg-green-600 text-white p-2">
+              Add
+            </button>
+            <button type="reset" class="bg-green-600 text-white p-2">
+              Reset
+            </button>
+          </div>
         </form>
       </section>
+
+      <section>
+        <div class="border-l-green-500 border-[5px] px-4 m-2">
+          <ul>
+            <li hidden>task id</li>
+            <li>frontend developer</li>
+            <li>12/31/2024</li>
+            <li>🚨 High Priority</li>
+            <li>🔄 In Progress</li>
+          </ul>
+          <div class="flex justify-around">
+            <button><i class="fa-solid fa-pen-to-square"></i></button>
+            <button><i class="fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+      </section>
+
       <footer>
         <i>oneclick techy &copy;</i>
       </footer>
     </main>
     <script src="./script.js"></script>
+    <script src="https://kit.fontawesome.com/64224c8a23.js" crossorigin="anonymous"></script>
   </body>
 </html>
