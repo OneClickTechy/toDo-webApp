@@ -118,11 +118,13 @@ taskForm.addEventListener("click", (event) => {
       //if all inputs are entered
       console.log("inputs are valid"); //d
       //get all inputs from form
-      const { taskId, inputName, inputDueDate, inputPriority, inputStatus } =
-        getInput();
+      const newTask = getInput();
 
+      const { taskId, inputName, inputDueDate, inputPriority, inputStatus } =
+        newTask;
+      console.log(taskId);
       //save the elements in taskData array
-      taskData.unshift(getInput());
+      taskData.unshift(newTask);
 
       //save all tasks locally via local starage
       localStorage.setItem("tasks", JSON.stringify(taskData));
@@ -179,8 +181,12 @@ tasksContainer.addEventListener("click", (event) => {
 
     //get target element id for search
     const targetId = target.closest('.task-container').id;
+    console.log(targetId);
     //get index of target task
     const targetIndex = taskData.findIndex(task => task.taskId === targetId);
+    console.log(taskData.map(task => task.taskId)); // Output: List of all task IDs
+
+    console.log(targetIndex);
     console.log(taskData[targetIndex]);//d
 
     //to be continue

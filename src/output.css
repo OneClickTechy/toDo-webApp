@@ -624,6 +624,22 @@ video {
   top: 50%;
 }
 
+.top-0 {
+  top: 0px;
+}
+
+.top-10 {
+  top: 2.5rem;
+}
+
+.top-\[20px\] {
+  top: 20px;
+}
+
+.top-\[40px\] {
+  top: 40px;
+}
+
 .m-2 {
   margin: 0.5rem;
 }
