@@ -554,6 +554,10 @@ video {
   --tw-contain-style:  ;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
 }
@@ -568,6 +572,26 @@ video {
 
 .top-0 {
   top: 0px;
+}
+
+.bottom-0 {
+  bottom: 0px;
+}
+
+.bottom-2 {
+  bottom: 0.5rem;
+}
+
+.bottom-\[\] {
+  bottom: ;
+}
+
+.bottom-\[10px\] {
+  bottom: 10px;
+}
+
+.right-\[10px\] {
+  right: 10px;
 }
 
 .m-2 {
@@ -612,6 +636,10 @@ video {
 
 .justify-start {
   justify-content: flex-start;
+}
+
+.justify-end {
+  justify-content: flex-end;
 }
 
 .justify-center {
@@ -716,8 +744,20 @@ video {
   fill: none;
 }
 
+.fill-white {
+  fill: #fff;
+}
+
+.fill-black {
+  fill: #000;
+}
+
 .stroke-teal-500 {
   stroke: #14b8a6;
+}
+
+.stroke-green-500 {
+  stroke: #22c55e;
 }
 
 .p-2 {
@@ -779,12 +819,24 @@ video {
   fill: #115e59;
 }
 
+.group:hover .group-hover\:fill-green-800 {
+  fill: #166534;
+}
+
 .group:active .group-active\:fill-teal-600 {
   fill: #0d9488;
 }
 
+.group:active .group-active\:fill-green-600 {
+  fill: #16a34a;
+}
+
 .group:active .group-active\:stroke-teal-200 {
   stroke: #99f6e4;
+}
+
+.group:active .group-active\:stroke-green-200 {
+  stroke: #bbf7d0;
 }
 
 .group:active .group-active\:duration-0 {
