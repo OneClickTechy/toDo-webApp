@@ -15,7 +15,6 @@ const inputTask = {
 //set min date and remove max attribute in date input
 const today = new Date().toISOString().split("T")[0];
 inputTask.dueDate.setAttribute("min", today);
-inputTask.dueDate.removeAttribute("max");
 
 //select add new task button
 const addNewButton = document.getElementById("add-new-btn");
@@ -26,6 +25,11 @@ const tasksContainer = document.getElementById("tasks-container");
 //create array to store all tasks
 let taskData = JSON.parse(localStorage.getItem("tasks")) || [];
 console.log(taskData);
+
+//current target id
+let currentTaskId = null;
+//current target index
+let currentTargetIndex = null;
 
 //function to generate unique id for task
 function generateUniqueId() {
@@ -64,17 +68,26 @@ function createTask(id, name, dueDate, priority, status) {
         </div>`;
 }
 
-
 //create html task if already exist any tasks
+function updateTask(){
 taskData.reverse().map((element) => {
   console.log(element);
-  const {taskId, inputName, inputDueDate, inputPriority, inputStatus} = element;
+  const { taskId, inputName, inputDueDate, inputPriority, inputStatus } =
+    element;
   console.log(taskId, inputName, inputDueDate, inputPriority, inputStatus);
 
-  const elements = createTask(taskId, inputName, inputDueDate, inputPriority, inputStatus);
-  tasksContainer.insertAdjacentHTML('afterbegin',elements);
+  const elements = createTask(
+    taskId,
+    inputName,
+    inputDueDate,
+    inputPriority,
+    inputStatus
+  );
+  tasksContainer.insertAdjacentHTML("afterbegin", elements);
 });
-
+}
+//call the update function
+updateTask();
 //add event listener to form to detect click event
 taskForm.addEventListener("click", (event) => {
   //prevent reload
@@ -142,14 +155,48 @@ taskForm.addEventListener("click", (event) => {
         inputStatus
       );
 
-      tasksContainer.insertAdjacentHTML('afterbegin',elements);
+      tasksContainer.insertAdjacentHTML("afterbegin", elements);
 
       //after save task hide the container
       taskContainerClassToggler();
+
+      //reset all input fields
+      //destructure all inputs from object
+      const { name, dueDate, priority, status } = inputTask;
+
+      name.value = dueDate.value = priority.value = status.value = "";
     } else {
       //if all inputs or anyone is empty
       alert("please enter valid input");
     }
+  } else if (target.id === "add-btn" && target.innerText === "Save Changes") {
+    console.log("save the edited task button is clicked");
+    const { name, dueDate, priority, status } = inputTask;
+
+    const taskObject = {
+      taskId: currentTaskId,
+      inputName: name.value,
+      inputDueDate: dueDate.value,
+      inputPriority: priority.value,
+      inputStatus: status.value,
+    };
+    //remove edited element and add  new into same place
+    console.log(taskObject);
+    console.log(currentTargetIndex);
+    taskData.splice(currentTargetIndex, 1, taskObject);
+    console.log(taskData);
+    //save all tasks locally
+    localStorage.tasks = JSON.stringify(taskData);
+    console.log(JSON.parse(localStorage.getItem('tasks')));//d
+
+    //display all changes;
+    tasksContainer.innerHTML = '';
+    // hide after save 
+    taskContainerClassToggler();
+    updateTask();
+
+    
+
   } else if (target.id === "reset-btn") {
     //handle reset button
     console.log("reset button is pressed");
@@ -180,19 +227,55 @@ tasksContainer.addEventListener("click", (event) => {
     console.log("edit button is clicked");
 
     //get target element id for search
-    const targetId = target.closest('.task-container').id;
+    const targetId = target.closest(".task-container").id;
     console.log(targetId);
+    //store the id for later use
+    currentTaskId = targetId;
+
     //get index of target task
-    const targetIndex = taskData.findIndex(task => task.taskId === targetId);
-    console.log(taskData.map(task => task.taskId)); // Output: List of all task IDs
+    const targetIndex = taskData.findIndex((task) => task.taskId === targetId);
+
+    currentTargetIndex = targetIndex;
+    console.log(taskData.map((task) => task.taskId)); // Output: List of all task IDs
 
     console.log(targetIndex);
-    console.log(taskData[targetIndex]);//d
+    console.log(taskData[targetIndex]); //d
 
-    //to be continue
+    //after find task push all value into form
 
+    //destruct all input
+    const { name, dueDate, priority, status } = inputTask;
+
+    //destruct all value from object
+    const { taskId, inputName, inputDueDate, inputPriority, inputStatus } =
+      taskData[targetIndex];
+    console.log(taskId, inputName, inputDueDate, inputPriority, inputStatus); //d
+
+    //push all value into form
+    name.value = inputName;
+    dueDate.value = inputDueDate;
+    priority.value = inputPriority;
+    status.value = inputStatus;
+
+    //change the text content of the button
+    document.getElementById("add-btn").innerText = "Save Changes";
+
+    //toggle class
+    taskContainerClassToggler();
   } else if (target.matches(".delete-task") || target.closest(".delete-task")) {
     //handle delete tasks buttons
     console.log("delete button is clicked");
+    console.log(target.closest('.task-container').id);
+    currentTaskId = target.closest('.task-container').id;
+    currentTargetIndex = taskData.findIndex(task => task.taskId === currentTaskId);
+    console.log(currentTargetIndex);
+    console.log(taskData[currentTargetIndex]);
+    //delete current target in array
+    taskData.splice(currentTargetIndex, 1);
+    //store locally
+    localStorage.tasks = JSON.stringify(taskData);
+    //diplay changes
+    tasksContainer.innerHTML = ''
+    updateTask();
   }
 });
