@@ -17,7 +17,7 @@
         <form
           class="flex flex-col justify-center items-start bg-green-100 border-[1px] border-black p-4 relative gap-2"
         >
-          <button class="absolute top-0 right-0 p-4" type="button">X</button>
+          <button class="absolute top-0 right-0 p-4" type="button" id="cancel-btn">X</button>
           <label for="input-name">Task Name</label>
           <input
             class="border-b-green-600 border-2"
@@ -66,7 +66,7 @@
             <option value="deferred">⏳ Deferred</option>
           </select>
           <div class="flex justify-between items-center w-full">
-            <button type="submit" class="bg-green-600 text-white p-2">
+            <button type="submit" class="bg-green-600 text-white p-2" id="add-btn">
               Add
             </button>
             <button type="reset" class="bg-green-600 text-white p-2">
@@ -80,7 +80,7 @@
         
       
 
-      <section>
+      <section id="tasks-container">
         <div
           class="border-l-green-500 border-l-[5px] rounded-l-xl px-4 m-2 bg-gray-300"
         >
@@ -122,7 +122,7 @@
       <section class="flex justify-end items-center w-full fixed bottom-[10px] right-[10px]"> 
       <button
       class="group cursor-pointer outline-none hover:rotate-90 duration-300"
-      title="Add New"
+      title="Add New" id="add-new-btn"
     >
       <svg
         class="stroke-green-500 fill-none group-hover:fill-green-800 group-active:stroke-green-200 group-active:fill-green-600 group-active:duration-0 duration-300"
