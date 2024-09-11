@@ -61,7 +61,6 @@ taskForm.addEventListener("click", (event) => {
 
     //function to create html element
     const createTask = (name, dueDate, priority, status) => {
-      
       const elements = ` <div
           class="border-l-green-500 border-l-[5px] rounded-l-xl px-4 m-2 bg-gray-300 p-4"
         >
@@ -73,13 +72,13 @@ taskForm.addEventListener("click", (event) => {
             <li>${status}</li>
           </ul>
           <div class="flex justify-around">
-            <button>
+            <button class="edit-task">
               <i class="fa-solid fa-pen-to-square text-green-600"></i>
             </button>
-            <button><i class="fa-solid fa-trash text-green-600"></i></button>
+            <button class="delete-task"><i class="fa-solid fa-trash text-green-600"></i></button>
           </div>
-        </div>`
-    }
+        </div>`;
+    };
 
     //call isValid function to check all inputs are entered
     if (isValid()) {
@@ -88,8 +87,6 @@ taskForm.addEventListener("click", (event) => {
       //get all inputs from form
       getInput();
       console.log(getInput());
-
-
     } else {
       //if all inputs or anyone is empty
       alert("please enter valid input");
@@ -110,4 +107,17 @@ addNewButton.addEventListener("click", () => {
   console.log("add new task button is clicked"); //d
   taskInputContainer.classList.toggle("flex");
   taskInputContainer.classList.toggle("hidden");
+});
+
+//add event listener to tasks container to handle buttons of task
+tasksContainer.addEventListener("click", (event) => {
+  const { target } = event;
+  console.log(target);
+  if (target.matches(".edit-task") || target.closest(".edit-task")) {
+    //handle edit task buttons
+    console.log("edit button is clicked");
+  } else if (target.matches(".delete-task") || target.closest(".delete-task")) {
+    //handle delete tasks buttons
+    console.log("delete button is clicked");
+  }
 });
