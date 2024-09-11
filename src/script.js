@@ -14,7 +14,6 @@ const inputTask = {
 
 //set min date and remove max attribute in date input
 const today = new Date().toISOString().split("T")[0];
-console.log(today);
 inputTask.dueDate.setAttribute("min", today);
 inputTask.dueDate.removeAttribute("max");
 
@@ -60,6 +59,28 @@ taskForm.addEventListener("click", (event) => {
       return obj;
     };
 
+    //function to create html element
+    const createTask = (name, dueDate, priority, status) => {
+      
+      const elements = ` <div
+          class="border-l-green-500 border-l-[5px] rounded-l-xl px-4 m-2 bg-gray-300 p-4"
+        >
+          <ul>
+            <li hidden>task id</li>
+            <li class="capitalize"><b>${name}</b></li>
+            <li>Due : <span class="text-gray-500">${dueDate}</span></li>
+            <li>${priority}</li>
+            <li>${status}</li>
+          </ul>
+          <div class="flex justify-around">
+            <button>
+              <i class="fa-solid fa-pen-to-square text-green-600"></i>
+            </button>
+            <button><i class="fa-solid fa-trash text-green-600"></i></button>
+          </div>
+        </div>`
+    }
+
     //call isValid function to check all inputs are entered
     if (isValid()) {
       //if all inputs are entered
@@ -67,6 +88,8 @@ taskForm.addEventListener("click", (event) => {
       //get all inputs from form
       getInput();
       console.log(getInput());
+
+
     } else {
       //if all inputs or anyone is empty
       alert("please enter valid input");
