@@ -23,6 +23,64 @@ const addNewButton = document.getElementById("add-new-btn");
 //select container of tasks
 const tasksContainer = document.getElementById("tasks-container");
 
+//create array to store all tasks
+let taskData = JSON.parse(localStorage.getItem("tasks")) || [];
+console.log(taskData);
+
+//function to generate unique id for task
+function generateUniqueId() {
+  return "id-" + Date.now() + "-" + Math.floor(Math.random() * 10000);
+}
+
+//function to format a date as dd/mm/yyyy
+function dateFormater(date) {
+  const inputDate = new Date(date);
+  const day = String(inputDate.getDate()).padStart(2, "0");
+  const month = String(inputDate.getMonth() + 1).padStart(2, "0"); // Months are zero-indexed
+  const year = inputDate.getFullYear();
+
+  return `${day}/${month}/${year}`;
+}
+
+//function to create html element
+function createTask(id, name, dueDate, priority, status) {
+  return `<div
+          class="border-l-green-500 border-l-[5px] rounded-l-xl px-4 m-2 bg-gray-300 p-4"
+        id="${id}">
+          <ul>
+            <li class="capitalize"><b>${name}</b></li>
+            <li>Due : <span class="text-gray-500">${dateFormater(
+              dueDate
+            )}</span></li>
+            <li>${priority}</li>
+            <li>${status}</li>
+          </ul>
+          <div class="flex justify-around">
+            <button class="edit-task">
+              <i class="fa-solid fa-pen-to-square text-green-600"></i>
+            </button>
+            <button class="delete-task"><i class="fa-solid fa-trash text-green-600"></i></button>
+          </div>
+        </div>`;
+}
+
+//function to create a html element string to html element type
+function parseHtmlString(htmlString) {
+  const template = document.createElement("div");
+  template.innerHTML = htmlString;
+  return template.firstElementChild; // Use firstElementChild to get the main element
+}
+
+//create html task if already exist any tasks
+taskData.map((element) => {
+  console.log(element);
+  const {taskId, inputName, inputDueDate, inputPriority, inputStatus} = element;
+  console.log(taskId, inputName, inputDueDate, inputPriority, inputStatus);
+
+  const elements = createTask(taskId, inputName, inputDueDate, inputPriority, inputStatus);
+  tasksContainer.appendChild(parseHtmlString(elements));
+});
+
 //add event listener to form to detect click event
 taskForm.addEventListener("click", (event) => {
   //prevent reload
@@ -43,50 +101,55 @@ taskForm.addEventListener("click", (event) => {
     const { name, dueDate, priority, status } = inputTask;
 
     //function to check all input are entered
-    const isValid = () => {
+    function isValid() {
       return name.value && dueDate.value && priority.value && status.value
         ? true
         : false;
-    };
+    }
+
     //function to store all input value inside object and return
-    const getInput = () => {
+    function getInput() {
       const obj = {
+        taskId: generateUniqueId(),
         inputName: name.value,
         inputDueDate: dueDate.value,
         inputPriority: priority.value,
         inputStatus: status.value,
       };
       return obj;
-    };
-
-    //function to create html element
-    const createTask = (name, dueDate, priority, status) => {
-      const elements = ` <div
-          class="border-l-green-500 border-l-[5px] rounded-l-xl px-4 m-2 bg-gray-300 p-4"
-        >
-          <ul>
-            <li hidden>task id</li>
-            <li class="capitalize"><b>${name}</b></li>
-            <li>Due : <span class="text-gray-500">${dueDate}</span></li>
-            <li>${priority}</li>
-            <li>${status}</li>
-          </ul>
-          <div class="flex justify-around">
-            <button class="edit-task">
-              <i class="fa-solid fa-pen-to-square text-green-600"></i>
-            </button>
-            <button class="delete-task"><i class="fa-solid fa-trash text-green-600"></i></button>
-          </div>
-        </div>`;
-    };
+    }
 
     //call isValid function to check all inputs are entered
     if (isValid()) {
       //if all inputs are entered
       console.log("inputs are valid"); //d
       //get all inputs from form
-      getInput();
-      console.log(getInput());
+      const { taskId, inputName, inputDueDate, inputPriority, inputStatus } =
+        getInput();
+
+      //save the elements in taskData array
+      taskData.unshift(getInput());
+
+      //save all tasks locally via local starage
+      localStorage.setItem("tasks", JSON.stringify(taskData));
+
+      console.log("date pushed to array"); //d
+      console.log(taskData); //d
+      console.log(localStorage.tasks);
+
+      //create html task use input values
+      const elements = createTask(
+        taskId,
+        inputName,
+        inputDueDate,
+        inputPriority,
+        inputStatus
+      );
+
+      tasksContainer.appendChild(parseHtmlString(elements));
+
+      //after save task hide the container
+      taskContainerClassToggler();
     } else {
       //if all inputs or anyone is empty
       alert("please enter valid input");
@@ -101,12 +164,15 @@ taskForm.addEventListener("click", (event) => {
     name.value = dueDate.value = priority.value = status.value = "";
   }
 });
-
+//function task container class toggler
+function taskContainerClassToggler() {
+  taskInputContainer.classList.toggle("flex");
+  taskInputContainer.classList.toggle("hidden");
+}
 //add event listener to add new button to detect click event
 addNewButton.addEventListener("click", () => {
   console.log("add new task button is clicked"); //d
-  taskInputContainer.classList.toggle("flex");
-  taskInputContainer.classList.toggle("hidden");
+  taskContainerClassToggler();
 });
 
 //add event listener to tasks container to handle buttons of task
