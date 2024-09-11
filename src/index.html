@@ -14,7 +14,7 @@
         <h1 class="text-center text-3xl">ToDo List Maker</h1>
       </header>
       <section
-        class="grow flex-col justify-start items-center absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 hidden"
+        class="flex-col justify-start items-center absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 hidden"
         id="task-input-container"
       >
         <form
@@ -51,9 +51,9 @@
             required
           >
             <option value="" selected hidden>---select---</option>
-            <option value="high">🚨 High Priority</option>
-            <option value="medium">🔶 Medium Priority</option>
-            <option value="low">🟢 Low Priority</option>
+            <option value="🚨 High Priority">🚨 High Priority</option>
+            <option value="🔶 Medium Priority">🔶 Medium Priority</option>
+            <option value="🟢 Low Priority">🟢 Low Priority</option>
           </select>
 
           <label for="input-status">Status</label>
@@ -64,12 +64,12 @@
             required
           >
             <option value="" selected hidden>---select---</option>
-            <option value="not-started">🔲 Not Started</option>
-            <option value="in-progress">🔄 In Progress</option>
-            <option value="completed">✅ Completed</option>
-            <option value="on-hold">🛑 On Hold</option>
-            <option value="canceled">❌ Canceled</option>
-            <option value="deferred">⏳ Deferred</option>
+            <option value="🔲 Not Started">🔲 Not Started</option>
+            <option value="🔄 In Progress">🔄 In Progress</option>
+            <option value="✅ Completed">✅ Completed</option>
+            <option value="🛑 On Hold">🛑 On Hold</option>
+            <option value="❌ Canceled">❌ Canceled</option>
+            <option value="⏳ Deferred">⏳ Deferred</option>
           </select>
           <div class="flex justify-between items-center w-full">
             <button
@@ -79,35 +79,20 @@
             >
               Add
             </button>
-            <button type="reset" class="bg-green-600 text-white p-2">
+            <button
+              type="reset"
+              class="bg-green-600 text-white p-2"
+              id="reset-btn"
+            >
               Reset
             </button>
           </div>
         </form>
       </section>
 
-      <section id="tasks-container">
+      <section id="tasks-container" class="grow">
         <div
-          class="border-l-green-500 border-l-[5px] rounded-l-xl px-4 m-2 bg-gray-300"
-        >
-          <ul>
-            <li hidden>task id</li>
-            <li class="capitalize"><b>frontend developer</b></li>
-            <li>Due : <span class="text-gray-500">12/31/2024</span></li>
-            <li>🚨 High Priority</li>
-            <li>🔄 In Progress</li>
-          </ul>
-          <div class="flex justify-around">
-            <button>
-              <i class="fa-solid fa-pen-to-square text-green-600"></i>
-            </button>
-            <button><i class="fa-solid fa-trash text-green-600"></i></button>
-          </div>
-        </div>
-      </section>
-      <section>
-        <div
-          class="border-l-green-500 border-l-[5px] rounded-l-xl px-4 m-2 bg-gray-300"
+          class="border-l-green-500 border-l-[5px] rounded-l-xl px-4 m-2 bg-gray-300 p-4"
         >
           <ul>
             <li hidden>task id</li>
