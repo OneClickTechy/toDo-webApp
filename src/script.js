@@ -45,7 +45,7 @@ function dateFormater(date) {
 //function to create html element
 function createTask(id, name, dueDate, priority, status) {
   return `<div
-          class="border-l-green-500 border-l-[5px] rounded-l-xl px-4 m-2 bg-gray-300 p-4"
+          class="task-container border-l-green-500 border-l-[5px] rounded-l-xl px-4 m-2 bg-gray-300 p-4"
         id="${id}">
           <ul>
             <li class="capitalize"><b>${name}</b></li>
@@ -64,21 +64,15 @@ function createTask(id, name, dueDate, priority, status) {
         </div>`;
 }
 
-//function to create a html element string to html element type
-function parseHtmlString(htmlString) {
-  const template = document.createElement("div");
-  template.innerHTML = htmlString;
-  return template.firstElementChild; // Use firstElementChild to get the main element
-}
 
 //create html task if already exist any tasks
-taskData.map((element) => {
+taskData.reverse().map((element) => {
   console.log(element);
   const {taskId, inputName, inputDueDate, inputPriority, inputStatus} = element;
   console.log(taskId, inputName, inputDueDate, inputPriority, inputStatus);
 
   const elements = createTask(taskId, inputName, inputDueDate, inputPriority, inputStatus);
-  tasksContainer.appendChild(parseHtmlString(elements));
+  tasksContainer.insertAdjacentHTML('afterbegin',elements);
 });
 
 //add event listener to form to detect click event
@@ -93,7 +87,7 @@ taskForm.addEventListener("click", (event) => {
     taskInputContainer.classList.toggle("hidden");
     console.log(taskInputContainer.classList); //d
     console.log("cancel btn is clicked"); //d
-  } else if (target.id === "add-btn") {
+  } else if (target.id === "add-btn" && target.innerText === "Add") {
     //handle add button
     console.log("add task btn is clicked"); //d
 
@@ -146,7 +140,7 @@ taskForm.addEventListener("click", (event) => {
         inputStatus
       );
 
-      tasksContainer.appendChild(parseHtmlString(elements));
+      tasksContainer.insertAdjacentHTML('afterbegin',elements);
 
       //after save task hide the container
       taskContainerClassToggler();
@@ -182,6 +176,15 @@ tasksContainer.addEventListener("click", (event) => {
   if (target.matches(".edit-task") || target.closest(".edit-task")) {
     //handle edit task buttons
     console.log("edit button is clicked");
+
+    //get target element id for search
+    const targetId = target.closest('.task-container').id;
+    //get index of target task
+    const targetIndex = taskData.findIndex(task => task.taskId === targetId);
+    console.log(taskData[targetIndex]);//d
+
+    //to be continue
+
   } else if (target.matches(".delete-task") || target.closest(".delete-task")) {
     //handle delete tasks buttons
     console.log("delete button is clicked");
