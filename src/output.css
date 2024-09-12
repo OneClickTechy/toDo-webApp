@@ -744,6 +744,34 @@ video {
   background-color: rgb(22 163 74 / var(--tw-bg-opacity));
 }
 
+.bg-\[\] {
+  background-color: ;
+}
+
+.bg-\[url\(\'\.\/\'\)\] {
+  background-image: url('./');
+}
+
+.bg-\[url\(\'\.\/assets\/task-bg\.png\'\)\] {
+  background-image: url('./assets/task-bg.png');
+}
+
+.bg-\[url\(\'\/assets\/task-bg\.png\'\)\] {
+  background-image: url('/assets/task-bg.png');
+}
+
+.bg-\[url\(\'src\/assets\/task-bg\.png\'\)\] {
+  background-image: url('src/assets/task-bg.png');
+}
+
+.bg-\[url\(\'\/src\/assets\/task-bg\.png\'\)\] {
+  background-image: url('/src/assets/task-bg.png');
+}
+
+.bg-\[url\(\'\.\/src\/assets\/task-bg\.png\'\)\] {
+  background-image: url('./src/assets/task-bg.png');
+}
+
 .fill-none {
   fill: none;
 }
