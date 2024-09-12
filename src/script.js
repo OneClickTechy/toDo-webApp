@@ -194,9 +194,11 @@ taskForm.addEventListener("click", (event) => {
     // hide after save 
     taskContainerClassToggler();
     updateTask();
+    //reset all input fields after save
+    name.value = dueDate.value = priority.value = status.value = "";
 
-    
-
+    //reset the inner text of the add button
+    target.innerText = 'Add'
   } else if (target.id === "reset-btn") {
     //handle reset button
     console.log("reset button is pressed");
