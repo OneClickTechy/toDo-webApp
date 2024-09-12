@@ -748,6 +748,14 @@ video {
   background-image: url('./src/assets/bg-task.png');
 }
 
+.bg-\[url\(\.\/src\/assets\/bg-task\.png\)\] {
+  background-image: url(./src/assets/bg-task.png);
+}
+
+.bg-\[url\(\/src\/assets\/bg-task\.png\)\] {
+  background-image: url(/src/assets/bg-task.png);
+}
+
 .fill-none {
   fill: none;
 }
