@@ -18,7 +18,8 @@
         <h1 class="text-center text-3xl">ToDo List Maker</h1>
       </header>
       <section
-        class="flex-col justify-start items-center absolute top-[40px] left-[50%] -translate-x-1/2 hidden"
+        class="flex-col justify-start items-center absolute top-[40px] left-[50%] -translate-x-1/2 hidden z-[1]"
+        
         id="task-input-container"
       >
         <form
@@ -94,14 +95,19 @@
         </form>
       </section>
 
-      <section
-        id="tasks-container"
-        class="grow"
-      >
-      <figure>
-        <img src="./assets/bg-task.png" alt="background">      </figure>
-        <figcaption class="hidden"><a href="https://www.freepik.com/free-vector/multitasking-concept-illustration_9930923.htm?log-in=google#fromView=keyword&page=1&position=6&uuid=c4d0d4df-59ea-47d0-8681-d2a5d3276477">Image by storyset on Freepik</a></figcaption>
-    </section>
+      <section id="tasks-container" class="grow relative">
+        <figure
+          class="absolute top-[50%] left-[50%] -translate-y-1/2 -translate-x-1/2 w-full h-auto -z-[1]"
+        >
+          <img src="./assets/bg-task.png" alt="background" />
+        </figure>
+        <figcaption class="hidden">
+          <a
+            href="https://www.freepik.com/free-vector/multitasking-concept-illustration_9930923.htm?log-in=google#fromView=keyword&page=1&position=6&uuid=c4d0d4df-59ea-47d0-8681-d2a5d3276477"
+            >Image by storyset on Freepik</a
+          >
+        </figcaption>
+      </section>
 
       <section
         class="flex justify-end items-center w-full fixed bottom-[10px] right-[10px]"
