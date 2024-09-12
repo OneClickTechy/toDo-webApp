@@ -744,6 +744,10 @@ video {
   background-color: rgb(22 163 74 / var(--tw-bg-opacity));
 }
 
+.bg-\[url\(\'\.\/src\/assets\/bg-task\.png\'\)\] {
+  background-image: url('./src/assets/bg-task.png');
+}
+
 .fill-none {
   fill: none;
 }
