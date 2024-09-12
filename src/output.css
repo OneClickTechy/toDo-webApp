@@ -624,14 +624,6 @@ video {
   top: 40px;
 }
 
-.top-\[50\%\] {
-  top: 50%;
-}
-
-.-z-10 {
-  z-index: -10;
-}
-
 .m-2 {
   margin: 0.5rem;
 }
@@ -658,11 +650,6 @@ video {
 
 .-translate-x-1\/2 {
   --tw-translate-x: -50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.-translate-y-1\/2 {
-  --tw-translate-y: -50%;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -755,6 +742,70 @@ video {
 .bg-green-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(22 163 74 / var(--tw-bg-opacity));
+}
+
+.bg-\[url\(\'\'\)\] {
+  background-image: url('');
+}
+
+.bg-\[url\(\'\.\/\'\)\] {
+  background-image: url('./');
+}
+
+.bg-\[url\(\)\] {
+  background-image: url();
+}
+
+.bg-\[url\(\.\/\)\] {
+  background-image: url(./);
+}
+
+.bg-\[url\(\.\/src\)\] {
+  background-image: url(./src);
+}
+
+.bg-\[url\(\.\/accets\)\] {
+  background-image: url(./accets);
+}
+
+.bg-\[url\(\.\/accets\/t\)\] {
+  background-image: url(./accets/t);
+}
+
+.bg-\[url\(\.\/accets\/\)\] {
+  background-image: url(./accets/);
+}
+
+.bg-\[url\(\.\/accets\/bg\)\] {
+  background-image: url(./accets/bg);
+}
+
+.bg-\[url\(\.\/accets\/bg-task\.png\)\] {
+  background-image: url(./accets/bg-task.png);
+}
+
+.bg-\[url\(\.\/assets\/bg-task\.png\)\] {
+  background-image: url(./assets/bg-task.png);
+}
+
+.bg-\[url\(\.\/src\/assets\/bg-task\.png\)\] {
+  background-image: url(./src/assets/bg-task.png);
+}
+
+.bg-\[url\(\/src\/assets\/bg-task\.png\)\] {
+  background-image: url(/src/assets/bg-task.png);
+}
+
+.bg-\[url\(\"\.\/assets\/bg-task\.png\"\)\] {
+  background-image: url("./assets/bg-task.png");
+}
+
+.bg-\[url\(\&quot\;\.\/assets\/bg-task\.png\&quot\;\)\] {
+  background-image: url(&quot;./assets/bg-task.png&quot;);
+}
+
+.bg-\[url\(\"quot\;\.\/assets\/bg-task\.png\"\)\] {
+  background-image: url("quot;./assets/bg-task.png");
 }
 
 .fill-none {
