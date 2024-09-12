@@ -285,20 +285,33 @@ function initApp() {
     ) {
       //handle delete tasks buttons
       console.log("delete button is clicked");
-      console.log(target.closest(".task-container").id);
-      currentTaskId = target.closest(".task-container").id;
+      
+      //store the target id for later use
+      const taskContainer = target.closest(".task-container");
+      
+      if(!taskContainer) return;//stop if not found
+
+      console.log(taskContainer.id);
+      
+      //get id of target
+      currentTaskId = taskContainer.id;
+
+      //get index of target
       currentTargetIndex = taskData.findIndex(
         (task) => task.taskId === currentTaskId
       );
+
       console.log(currentTargetIndex);
       console.log(taskData[currentTargetIndex]);
+      
       //delete current target in array
       taskData.splice(currentTargetIndex, 1);
+      
       //store locally
       localStorage.tasks = JSON.stringify(taskData);
-      //diplay changes
-      tasksContainer.innerHTML = "";
-      updateTask();
+      
+      //delete target element and diplay changes
+      taskContainer.remove();
     }
   });
 }
