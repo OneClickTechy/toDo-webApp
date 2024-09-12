@@ -227,6 +227,7 @@ function initApp() {
     taskInputContainer.classList.toggle("flex");
     taskInputContainer.classList.toggle("hidden");
   }
+  
   //add event listener to add new button to detect click event
   addNewButton.addEventListener("click", () => {
     console.log("add new task button is clicked"); //d
