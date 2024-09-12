@@ -1,3 +1,9 @@
+document.addEventListener('DOMContentLoaded', initApp())
+
+function initApp(){
+  console.log('app initiated');
+
+
 //select task input form upper container
 const taskInputContainer = document.getElementById("task-input-container");
 
@@ -15,6 +21,7 @@ const inputTask = {
 //set min date and remove max attribute in date input
 const today = new Date().toISOString().split("T")[0];
 inputTask.dueDate.setAttribute("min", today);
+inputTask.dueDate.removeAttribute('max');
 
 //select add new task button
 const addNewButton = document.getElementById("add-new-btn");
@@ -281,3 +288,4 @@ tasksContainer.addEventListener("click", (event) => {
     updateTask();
   }
 });
+}
