@@ -4,11 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>todo list maker</title>
-    <link rel="stylesheet" href="./output.css" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <main
@@ -18,7 +14,7 @@
         <h1 class="text-center text-3xl">ToDo List Maker</h1>
       </header>
       <section
-        class="flex-col justify-start items-center absolute top-[40px] left-[50%] -translate-x-1/2 hidden"
+        class="flex-col justify-start items-center absolute top-[40px] left-[50%] -translate-x-1/2 hidden z-[1]"
         id="task-input-container"
       >
         <form
@@ -94,7 +90,19 @@
         </form>
       </section>
 
-      <section id="tasks-container" class="grow"></section>
+      <section id="tasks-container" class="grow relative">
+        <figure
+          class="fixed top-[50%] left-[50%] -translate-y-1/2 -translate-x-1/2 w-full sm:w-[80%] md:w-[60%] lg:w-[30%] h-auto -z-[1]"
+        >
+          <img src="./assets/bg-task.svg" alt="background" />
+        </figure>
+        <figcaption class="hidden">
+          <a
+            href="https://www.freepik.com/free-vector/multitasking-concept-illustration_9930923.htm?log-in=google#fromView=keyword&page=1&position=6&uuid=c4d0d4df-59ea-47d0-8681-d2a5d3276477"
+            >Image by storyset on Freepik</a
+          >
+        </figcaption>
+      </section>
 
       <section
         class="flex justify-end items-center w-full fixed bottom-[10px] right-[10px]"
@@ -124,7 +132,7 @@
         <i>oneclick techy &copy;</i>
       </footer>
     </main>
-    
+
     <script src="./script.js"></script>
     <script
       src="https://kit.fontawesome.com/64224c8a23.js"
