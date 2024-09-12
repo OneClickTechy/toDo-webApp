@@ -98,7 +98,7 @@ updateTask();
 //add event listener to form to detect click event
 taskForm.addEventListener("click", (event) => {
   //prevent reload
-  event.preventDefault();
+  taskForm.preventDefault();
   const { target } = event;
   if (target.id === "cancel-btn") {
     //handle cancel button
