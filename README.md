@@ -1,4 +1,3 @@
-
 # 📝 To-Do List Web App
 
 A simple, intuitive, and responsive To-Do list web app designed to help you stay organized and manage your daily tasks with ease.
@@ -18,8 +17,7 @@ You can try the app live here: [Live Demo](https://oneclicktechy.github.io/toDo-
 
 ## 📷 Screenshots
 
-
-![View](https://github.com/OneClickTechy/toDo-webApp/screenshot.png)
+![View](./screenshot.png)
 
 ## 🛠️ Technologies Used
 
@@ -29,11 +27,12 @@ You can try the app live here: [Live Demo](https://oneclicktechy.github.io/toDo-
 ## ⚙️ How to Run
 
 1. Clone the repository:
-   \`\`\`bash
-   git clone https://github.com/OneClickTechy/toDo-webApp.git
-   \`\`\`
 
-2. Open \`index.html\` in your browser.
+   ```bash
+   git clone https://github.com/OneClickTechy/toDo-webApp.git
+   ```
+
+2. Open `index.html` in your browser.
 
 ## 🤝 Contributing
 
